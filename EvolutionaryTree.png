@@ -1,0 +1,99 @@
+to setup-tree1
+
+ set color-inc 9
+
+ set init-color 9
+
+ set init-x 0
+
+ set init-y -50
+
+ setup
+
+  
+
+ let new-labels ["First Life Form" "Prokaryotic ancestor" "Archaean ancestor" "Bacterial ancestor" "Cyanobacteria (Photosynthetic bacteria)" "Methanogens (Anaerobic archaea)" "Proteobacteria" "Actinobacteria" "Firmicutes" "Thermophiles" "Sulfolobus (Thermophilic archaea)" "Primitive eukaryotic cells" "Unicellular eukaryotic organisms" "Protists" "Simple algae" "Amoebas" "Ciliates" "Flagellates"]
+
+  
+
+ ask turtles [
+
+  set label item who new-labels
+
+ ]
+
+  
+
+ set rule-set "tree1"
+
+end
+
+
+
+to tree1
+
+ let new-labels ["First Life Form" "Prokaryotic ancestor" "Archaean ancestor" "Bacterial ancestor" "Cyanobacteria (Photosynthetic bacteria)" "Methanogens (Anaerobic archaea)" "Proteobacteria" "Actinobacteria" "Firmicutes" "Thermophiles" "Sulfolobus (Thermophilic archaea)" "Primitive eukaryotic cells" "Unicellular eukaryotic organisms" "Protists" "Simple algae" "Amoebas" "Ciliates" "Flagellates"]
+
+ let colors-list [red orange yellow green blue cyan]
+
+ let color-index 0
+
+  
+
+ repeat 5 [
+
+  ; Code to draw the tree branches
+
+  fd 4 rt 15
+
+  fd 8
+
+  hatch 1 [
+
+   if (who mod 2 = 0) [ ; Add space every even turtle
+
+    fd 4
+
+   ]
+
+   set label item ((who + 1) mod length new-labels) new-labels
+
+   set color item color-index colors-list
+
+   set color-index (color-index + 1) mod length colors-list
+
+  ]
+
+  rt 180
+
+  skip 8
+
+  rt 180 lt 15
+
+  fd 4
+
+  lt 15
+
+  hatch 1 [
+
+   if (who mod 2 = 0) [ ; Add space every even turtle
+
+    fd 4
+
+   ]
+
+   set label item ((who + 1) mod length new-labels) new-labels
+
+   set color item color-index colors-list
+
+   set color-index (color-index + 1) mod length colors-list
+
+  ]
+
+  fd 8
+
+  die
+
+ ]
+
+end
